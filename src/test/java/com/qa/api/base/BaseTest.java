@@ -4,6 +4,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import com.qa.api.client.RestClient;
+import com.qa.api.manager.ConfigManager;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
@@ -22,7 +23,6 @@ public class BaseTest {
 	protected final static String BASE_URL_OAUTH2_AMADEUS = "https://test.api.amadeus.com";
 	protected final static String BASE_URL_ERGAST_CIRCUIT = "http://ergast.com";
 
-		
 	//********** API EndPoints*******//
 	protected final static String GOREST_USERS_ENDPOINT = "/public/v2/users";
 	protected final static String CONTACTS_LOGIN_ENDPOINT = "/users/login";
