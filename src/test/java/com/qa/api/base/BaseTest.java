@@ -15,9 +15,12 @@ public class BaseTest {
 	protected RestClient restClient;
 	
 	//********** API Base URLs*******//
-	protected final static String BASE_URL_GOREST = "https://gorest.co.in";
+
+	protected static String BASE_URL_GOREST;
+	protected static String BASE_URL_REQRES;
+
+	
 	protected final static String BASE_URL_CONTACTS = "https://thinking-tester-contact-list.herokuapp.com";
-	protected final static String BASE_URL_REQRES = "https://reqres.in";
 	protected final static String BASE_URL_BASIC_AUTH = "https://the-internet.herokuapp.com";
 	protected final static String BASE_URL_PRODUCTS = "https://fakestoreapi.com";
 	protected final static String BASE_URL_OAUTH2_AMADEUS = "https://test.api.amadeus.com";
@@ -36,8 +39,11 @@ public class BaseTest {
 
 	
 	@BeforeSuite
-	public void setupAllureReport() {
+	public void initSetup() {
 		RestAssured.filters(new AllureRestAssured());
+		BASE_URL_GOREST = ConfigManager.get("baseurl.gorest").trim();
+		BASE_URL_REQRES = ConfigManager.get("baseurl.reqres").trim();
+
 	}
 	
 	

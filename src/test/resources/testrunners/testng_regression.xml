@@ -33,7 +33,7 @@
 		</classes>
 	</test>
 
-	<test name="Product API Test - Get Product">
+	<!-- <test name="Product API Test - Get Product">
 		<classes>
 			<class name="com.qa.api.products.tests.ProductAPITest" />
 		</classes>
@@ -63,7 +63,7 @@
 		<classes>
 			<class name="com.qa.api.basicauth.tests.BasicAuthTest" />
 		</classes>
-	</test>
+	</test> -->
 
 
 

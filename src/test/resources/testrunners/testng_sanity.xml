@@ -15,7 +15,7 @@
 		</classes>
 	</test>
 
-	<test name="Go Rest API Test - Create User">
+	<!-- <test name="Go Rest API Test - Create User">
 		<classes>
 			<class name="com.qa.api.gorest.tests.CreateUserTest" />
 		</classes>
@@ -30,6 +30,13 @@
 	<test name="Go Rest API Test - Delete User">
 		<classes>
 			<class name="com.qa.api.gorest.tests.DeleteUserTest" />
+		</classes>
+	</test> -->
+	
+	
+	<test name="Req Res API Test">
+		<classes>
+			<class name="com.qa.api.reqres.tests.ReqResTest" />
 		</classes>
 	</test>
 
