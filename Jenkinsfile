@@ -32,7 +32,7 @@ pipeline
             }
         }
         
-        stage('Sanity API Automation Test') {
+        stage('Sanity API Automation Test on DEV') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/naveenanimation20/Jan2025APIFramework.git'
@@ -52,7 +52,7 @@ pipeline
           
                 
                 
-        stage('Regression API Automation Tests') {
+        stage('Regression API Automation Tests on QA') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/naveenanimation20/Jan2025APIFramework.git'
@@ -96,7 +96,7 @@ pipeline
             }
         }
         
-        stage('Sanity API Automation Test') {
+        stage('Sanity API Automation Test on Stage') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/naveenanimation20/Jan2025APIFramework.git'
@@ -126,7 +126,7 @@ pipeline
             }
         }
         
-        stage('Sanity API Automation Test') {
+        stage('Sanity API Automation Test on PROD') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/naveenanimation20/Jan2025APIFramework.git'
