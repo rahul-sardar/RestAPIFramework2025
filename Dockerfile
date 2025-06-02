@@ -4,15 +4,17 @@ FROM maven:3.6.3-openjdk-11
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the Maven project files to the container
+# Copy only the pom.xml first to leverage dependency caching
 COPY pom.xml .
+
+# Download project dependencies (cached unless pom.xml changes)
+RUN mvn dependency:go-offline -B
+
+# Now copy the rest of the source code
 COPY src ./src
 
-# Download project dependencies
-RUN mvn dependency:go-offline
-
-# Package the application
-RUN mvn clean package -DskipTests=true
+# Package the application skipping tests
+RUN mvn clean package -DskipTests=true -B
 
 # Set the default command to run tests
 CMD ["mvn", "test"]
