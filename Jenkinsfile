@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE = 'naveenkhunteta/jan2025apiframework:${BUILD_NUMBER}'
+        DOCKER_IMAGE = "naveenkhunteta/jan2025apiframework:${BUILD_NUMBER}"
         DOCKER_CREDENTIALS_ID = 'dockerhub_credentials'
     }
 
@@ -17,17 +17,14 @@ pipeline {
             }
         }
 
-        stage('Build') 
-        {
-            steps
-            {
-                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
-                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
+        stage('Build') {
+            steps {
+                // Check out sample Maven project just for build/test
+                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
-            post 
-            {
-                success
-                {
+            post {
+                success {
                     junit '**/target/surefire-reports/TEST-*.xml'
                     archiveArtifacts 'target/*.jar'
                 }
@@ -36,18 +33,21 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    dockerImage = docker.build("${DOCKER_IMAGE}")
-                }
+                sh "docker build -t ${DOCKER_IMAGE} ."
             }
         }
 
         stage('Push Docker Image to Docker Hub') {
             steps {
-                script {
-                    docker.withRegistry('', "${DOCKER_CREDENTIALS_ID}") {
-                        dockerImage.push()
-                    }
+                withCredentials([usernamePassword(
+                    credentialsId: "${DOCKER_CREDENTIALS_ID}",
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    sh '''
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker push ${DOCKER_IMAGE}
+                    '''
                 }
             }
         }
