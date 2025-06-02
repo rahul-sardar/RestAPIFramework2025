@@ -12,7 +12,7 @@ COPY src ./src
 RUN mvn dependency:go-offline
 
 # Package the application
-RUN mvn clean package
+RUN mvn clean package -DskipTests=true
 
 # Set the default command to run tests
 CMD ["mvn", "test"]
