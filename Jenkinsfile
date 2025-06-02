@@ -48,7 +48,7 @@ pipeline {
 
         stage('Run Sanity Tests on Dev') {
             steps {
-                sh "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=dev"
+                sh "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod"
             }
         }
 
@@ -60,7 +60,7 @@ pipeline {
 
         stage('Run Regression Tests on QA') {
             steps {
-                sh "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml -Denv=qa"
+                sh "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml -Denv=prod"
             }
         }
 
@@ -98,7 +98,7 @@ pipeline {
 
         stage('Run Sanity Tests on Stage') {
             steps {
-                sh "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=stage"
+                sh "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod"
             }
         }
 
