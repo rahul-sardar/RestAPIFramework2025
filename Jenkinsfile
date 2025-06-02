@@ -17,14 +17,19 @@ pipeline {
             }
         }
 
-        stage('Build Maven Project') {
-            steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true clean package'
+        stage('Build') 
+        {
+            steps
+            {
+                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
-            post {
-                success {
+            post 
+            {
+                success
+                {
                     junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                    archiveArtifacts 'target/*.jar'
                 }
             }
         }
