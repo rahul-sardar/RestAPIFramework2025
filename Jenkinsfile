@@ -17,8 +17,6 @@ pipeline {
             }
         }
 
-     
-
         stage('Build Docker Image') {
             steps {
                 sh "docker build -t ${DOCKER_IMAGE} ."
@@ -48,7 +46,15 @@ pipeline {
 
         stage('Run Sanity Tests on Dev') {
             steps {
-                sh "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod"
+                script {
+                    def status = sh(
+                        script: "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod",
+                        returnStatus: true
+                    )
+                    if (status != 0) {
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
             }
         }
 
@@ -60,7 +66,15 @@ pipeline {
 
         stage('Run Regression Tests on QA') {
             steps {
-                sh "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml -Denv=prod"
+                script {
+                    def status = sh(
+                        script: "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml -Denv=prod",
+                        returnStatus: true
+                    )
+                    if (status != 0) {
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
             }
         }
 
@@ -98,7 +112,15 @@ pipeline {
 
         stage('Run Sanity Tests on Stage') {
             steps {
-                sh "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod"
+                script {
+                    def status = sh(
+                        script: "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod",
+                        returnStatus: true
+                    )
+                    if (status != 0) {
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
             }
         }
 
@@ -124,7 +146,15 @@ pipeline {
 
         stage('Run Sanity Tests on Prod') {
             steps {
-                sh "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod"
+                script {
+                    def status = sh(
+                        script: "docker run --rm ${DOCKER_IMAGE} mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod",
+                        returnStatus: true
+                    )
+                    if (status != 0) {
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
             }
         }
     }
