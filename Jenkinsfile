@@ -33,7 +33,7 @@ pipeline {
                     sh '''
                         echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
                         docker push ${DOCKER_IMAGE}
-                    '''
+                       '''
                 }
             }
         }
@@ -75,7 +75,7 @@ pipeline {
                     def status = sh(
                         script: """
                   				  docker run --rm -v \$WORKSPACE:/app -w /app ${DOCKER_IMAGE} \
-                  				  mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
+                  				  mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml -Denv=prod
                					 """,
                         returnStatus: true
                     )
