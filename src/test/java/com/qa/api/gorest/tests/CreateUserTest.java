@@ -25,7 +25,7 @@ public class CreateUserTest extends BaseTest{
 	
 	@BeforeClass
 	public void setUpToken() {
-		tokenId = "e4b8e1f593dc4a731a153c5ec8cc9b8bbb583ae964ce650a741113091b4e2ac6";
+		tokenId = "67cb3fd4f61e6cae4afc770a6dfdb9cdf127fb2ef302fc1b0dfd6b5ae8dab174";
 		ConfigManager.set("bearertoken", tokenId);
 	}
 	
