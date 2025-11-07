@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE = "iamrahul1408/restapiframework2025practisejenkinsdocker :${BUILD_NUMBER}"
+        DOCKER_IMAGE = "iamrahul1408/restapiframework2025practisejenkinsdocker:${BUILD_NUMBER}"
         DOCKER_CREDENTIALS_ID = 'docker_creds'
     }
 
