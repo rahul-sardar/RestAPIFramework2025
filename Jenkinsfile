@@ -6,14 +6,14 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE = "naveenkhunteta/jan2025apiframework:${BUILD_NUMBER}"
-        DOCKER_CREDENTIALS_ID = 'dockerhub_credentials'
+        DOCKER_IMAGE = "iamrahul1408/restapiframework2025practisejenkinsdocker :${BUILD_NUMBER}"
+        DOCKER_CREDENTIALS_ID = 'docker_creds'
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/naveenanimation20/Jan2025APIFramework.git'
+                git 'https://github.com/rahul-sardar/RestAPIFramework2025.git'
             }
         }
 
