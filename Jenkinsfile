@@ -50,6 +50,7 @@ pipeline {
            script {
             def status = sh(
                 script: """
+                    export MSYS_NO_PATHCONV=1
                     docker run --rm -v "$WORKSPACE:/app" -w /app ${DOCKER_IMAGE} \
                     mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
                 """,
@@ -74,6 +75,7 @@ pipeline {
                 script {
                     def status = sh(
                         script: """
+                                  export MSYS_NO_PATHCONV=1
                   				  docker run --rm -v "$WORKSPACE:/app" -w /app ${DOCKER_IMAGE} \
                   				  mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml -Denv=prod
                					 """,
@@ -123,6 +125,7 @@ pipeline {
                 script {
                     def status = sh(
                         script: """
+                                export MSYS_NO_PATHCONV=1
                     			docker run --rm -v "$WORKSPACE:/app" -w /app ${DOCKER_IMAGE} \
                     			mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
                 				""",
@@ -160,6 +163,7 @@ pipeline {
                 script {
                     def status = sh(
                         script: """
+                                export MSYS_NO_PATHCONV=1
                     			docker run --rm -v "$WORKSPACE:/app" -w /app ${DOCKER_IMAGE} \
                     			mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
                				 """,
