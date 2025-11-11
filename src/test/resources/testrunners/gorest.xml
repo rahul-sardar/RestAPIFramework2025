@@ -7,7 +7,6 @@
 	<listeners>
 		<!-- <listener class-name="com.aventstack.chaintest.plugins.ChainTestListener" 
 			/> -->
-
 	</listeners>
 
 
